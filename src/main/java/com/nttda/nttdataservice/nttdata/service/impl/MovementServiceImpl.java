@@ -38,7 +38,7 @@ public class MovementServiceImpl implements MovementService {
         if (movement.isPresent()) {
             return movement.get();
         } else {
-            throw new ValidationException("Bank account not found");
+            throw new ValidationException("Movement not found");
         }
     }
 
@@ -162,7 +162,10 @@ public class MovementServiceImpl implements MovementService {
         BigDecimal balance = bankAccount.get().getMovements().stream().sorted(Comparator.comparing(
                         movement1 -> ((Movement) movement1).getDate()).reversed())
                 .findFirst().get().getBalance();
-        return movement.getMovementType().equals(MovementType.input) ? balance.add(movement.getAmount()) : balance.subtract(movement.getAmount());
-
+        BigDecimal mov = movement.getMovementType().equals(MovementType.input) ? balance.add(movement.getAmount()) : balance.subtract(movement.getAmount());
+        if (mov.compareTo(BigDecimal.ZERO) < 0) {
+            throw new ValidationException("Saldo no disponible");
+        }
+        return mov;
     }
 }
