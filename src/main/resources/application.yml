@@ -13,9 +13,9 @@ spring:
     include:
       - info
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/nttdata
+    url: jdbc:postgresql://host.docker.internal:49153/nttdata
     username: postgres
-    password: postgres
+    password: postgrespw
   jpa:
     properties:
       hibernate:
