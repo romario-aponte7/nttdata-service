@@ -15,8 +15,9 @@ import java.util.UUID;
 @Repository
 public interface MovementRepository extends CrudRepository<Movement, UUID> {
 
-    @Query(value = "select distinct m.date, p.name, ba.number, ba.type, ba.initial_balance, \n" +
-            "ba.status, m.amount, m.balance from movements m \n" +
+    @Query(value = "select distinct m.date, p.name, ba.number, ba.type, ba.initial_balance, ba.status, \n" +
+            "case when m.movement_type ='output' then m.amount * (-1) else m.amount end,m.balance \n" +
+            "from movements m \n" +
             "join bank_accounts ba on ba.bank_account_id = m.bank_account_id \n" +
             "join clients c on c.person_id = ba.client_id \n" +
             "join persons p on p.person_id = c.person_id \n" +
