@@ -4,7 +4,6 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.util.Collection;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -12,6 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Table(name = "clients")
 @AllArgsConstructor
+
 public class Client extends Person {
 
     private String password;

@@ -3,6 +3,8 @@ server:
   port: 8080
   servlet:
     context-path: /api
+  error:
+    include-message: always
 
 spring:
   application:
@@ -33,3 +35,6 @@ spring:
     enabled: true
     change-log: classpath:db.changelog.xml
     contexts: ${spring.profiles.active}
+config:
+  error:
+    include-message: always

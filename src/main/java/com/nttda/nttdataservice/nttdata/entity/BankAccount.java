@@ -2,6 +2,7 @@ package com.nttda.nttdataservice.nttdata.entity;
 
 import com.nttda.nttdataservice.nttdata.enums.BankAccountStatus;
 import com.nttda.nttdataservice.nttdata.enums.BankAccountType;
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,18 +24,23 @@ public class BankAccount {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID bankAccountId;
 
+    @NotNull
+    @Column(unique = true)
     private String number;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private BankAccountType type;
 
     private BigDecimal initialBalance;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
     private BankAccountStatus status;
 
     @ManyToOne
     @JoinColumn(name = "client_id")
+    @NotNull
     private Client client;
 
     @OneToMany(mappedBy = "bankAccount")

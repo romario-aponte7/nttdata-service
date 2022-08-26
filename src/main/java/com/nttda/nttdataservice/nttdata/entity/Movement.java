@@ -1,6 +1,7 @@
 package com.nttda.nttdataservice.nttdata.entity;
 
 import com.nttda.nttdataservice.nttdata.enums.MovementType;
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,5 +34,6 @@ public class Movement {
 
     @ManyToOne
     @JoinColumn(name = "bank_account_id")
+    @NotNull
     private BankAccount bankAccount;
 }

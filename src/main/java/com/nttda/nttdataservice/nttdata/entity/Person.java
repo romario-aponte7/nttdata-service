@@ -1,5 +1,6 @@
 package com.nttda.nttdataservice.nttdata.entity;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,6 +27,8 @@ public class Person {
 
     private Integer age;
 
+    @NotNull
+    @Column(unique = true)
     private String identification;
 
     private String direction;
